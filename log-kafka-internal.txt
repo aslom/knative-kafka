@@ -1,3 +1,24 @@
+(base) macs-MacBook-Pro:knative-kafka aslom$ kubectl get deployment -n knative-eventing kafka-channel-controller
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+kafka-channel-controller   1/1     1            1           25h
+(base) macs-MacBook-Pro:knative-kafka aslom$ kubectl get configmap -n knative-eventing kafka-channel-controller-config
+NAME                              DATA   AGE
+kafka-channel-controller-config   1      25h
+(base) macs-MacBook-Pro:knative-kafka aslom$ kubectl get statefulset -n knative-eventing kafka-channel-dispatcher
+NAME                       READY   AGE
+kafka-channel-dispatcher   1/1     25h
+(base) macs-MacBook-Pro:knative-kafka aslom$ kubectl get configmap -n knative-eventing kafka-channel-dispatcher
+NAME                       DATA   AGE
+kafka-channel-dispatcher   1      25h
+(base) macs-MacBook-Pro:knative-kafka aslom$ k get pods -n knative-eventing
+NAME                                            READY   STATUS    RESTARTS   AGE
+eventing-controller-864657d8d4-m76kw            1/1     Running   0          2d21h
+in-memory-channel-controller-f794cc9d8-c5llv    1/1     Running   0          2d21h
+in-memory-channel-dispatcher-8595c7f8d7-jv2kj   2/2     Running   2          2d21h
+kafka-channel-controller-7f77c5f85c-988fk       1/1     Running   0          26h
+kafka-channel-dispatcher-0                      2/2     Running   308        26h
+kafka-cli                                       1/1     Running   21         21h
+webhook-5d76776d55-pb2lg                        1/1     Running   0          2d21h
 (base) macs-MacBook-Pro:knative-kafka aslom$ k logs kafka-channel-dispatcher-0 -n knative-eventing
 Error from server (BadRequest): a container name must be specified for pod kafka-channel-dispatcher-0, choose one of: [dispatcher istio-proxy] or one of the init containers: [istio-init]
 (base) macs-MacBook-Pro:knative-kafka aslom$ k logs kafka-channel-dispatcher-0 -n knative-eventing -c dispatcher
